@@ -1,5 +1,5 @@
 {
-    "name": "jpcaparas/n8n-client",
+    "name": "jpcaparas/laravel-n8n-client",
     "description": "A Laravel library that interfaces with the self-hosted N8N.io REST API",
     "type": "library",
     "require": {

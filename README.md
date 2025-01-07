@@ -1,4 +1,6 @@
-# jpcaparas/n8n-client
+# jpcaparas/laravel-n8n-client
+
+![Tests](https://github.com/jpcaparas/laravel-n8n-client/actions/workflows/tests.yml/badge.svg)
 
 A Laravel library that interfaces with the [self-hosted N8N.io](https://docs.n8n.io/hosting/community-edition-features/) [REST API](https://docs.n8n.io/api/api-reference/).
 
