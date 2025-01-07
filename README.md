@@ -4,7 +4,7 @@
 
 A Laravel library that interfaces with the [self-hosted n8n](https://docs.n8n.io/hosting/community-edition-features/) [REST API](https://docs.n8n.io/api/api-reference/).
 
-<img width="1286" alt="image" src="https://github.com/user-attachments/assets/d21e7b2c-f30b-4404-859a-4c926fb3a97b" />
+<img width="744" alt="SCR-20250107-rpsu" src="https://github.com/user-attachments/assets/2744c287-d977-4da1-a2a7-53740e10c5cb" />
 
 ## Installation
 
