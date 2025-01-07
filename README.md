@@ -1,10 +1,10 @@
 # jpcaparas/n8n-client
 
-A Laravel library that interfaces with the self-hosted N8N.io REST API.
+A Laravel library that interfaces with the [self-hosted N8N.io](https://docs.n8n.io/hosting/community-edition-features/) [REST API](https://docs.n8n.io/api/api-reference/).
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 
 ```bash
 composer require jpcaparas/n8n-client
@@ -16,52 +16,59 @@ Publish the configuration file:
 php artisan vendor:publish --provider="JPCaparas\N8N\N8NServiceProvider" --tag="config"
 ```
 
-Add your N8N API base URL and token to your `.env` file:
+Set these credentials inside your `.env` file:
 
 ```
+N8N_BASE_URI=http://[your_n8n_instance]:[your_n8n_port]
+N8N_API_TOKEN=[your_n8n_api_token]
+```
+
+## Local testing
+
+If you want to interact with the package locally, you can use the Laravel skeleton provided by `orchestra/testbench` and its associated Tinker REPL:
+
+1. Publish the configuration file to the Laravel skeleton.
+
+```bash
+composer test:publish
+```
+
+1. Modify `.env` API credentials on the skeleton as needed:
+
+```bash
 N8N_BASE_URI=http://localhost:5678
-N8N_API_TOKEN=your_api_token
+N8N_API_TOKEN=[your_n8n_api_token]
 ```
 
-## Testing Locally Using Tinker
-
-To test the package locally using Tinker, follow these steps:
-
-1. Publish the configuration file to the Laravel skeleton provided by `orchestra/testbench`:
+2. Enter the Tinker REPL:
 
 ```bash
-./vendor/bin/testbench vendor:publish --provider="JPCaparas\N8N\N8NServiceProvider" --tag="config"
-```
-
-1. Modify the skeleton `.env` as needed:
-
-```bash
-N8N_BASE_URI=http://localhost:5678
-N8N_API_TOKEN=[your_api_token]
-```
-
-2. Open Tinker:
-
-```bash
-php artisan tinker
+composer test:tinker
 ```
 
 2. Create an instance of the N8N client:
 
 ```php
-$n8n = app(JPCaparas\N8N\N8NClient::class);
+$n8n = app(\JPCaparas\N8N\N8NClient::class);
 ```
 
 3. Make API requests using the N8N client:
 
 ```php
-$response = $n8n->get('your-endpoint');
-$response = $n8n->post('your-endpoint', ['data' => 'value']);
+$response = $n8n->get('valid-endpoint');
+$response = $n8n->post('valid-endpoint', ['data' => 'value']);
 ```
 
-## Running Automated Tests
+There are also convenience methods for the most common API endpoints:
 
-To run the automated tests, use the following command:
+```php
+$response = $n8n->getWorkflows();
+$response = $n8n->getWorkflow('workflow-id');
+$response = $n8n->createWorkflow(['name' => 'New Workflow']);
+$response = $n8n->updateWorkflow('workflow-id', ['name' => 'Updated Workflow']);
+```
+
+## Tests
 
 ```bash
 composer test

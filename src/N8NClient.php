@@ -10,6 +10,8 @@ class N8NClient
 {
     protected $client;
 
+    protected const URI_PREFIX = '/api/v1/';
+
     public function __construct()
     {
         $this->client = new Client([
@@ -21,10 +23,10 @@ class N8NClient
         ]);
     }
 
-    public function get($endpoint, $params = [])
+    public function get(string $endpoint, $params = []): array
     {
         try {
-            $response = $this->client->request('GET', '/api/v1/' . $endpoint, [
+            $response = $this->client->request('GET', self::URI_PREFIX.$endpoint, [
                 'query' => $params,
             ]);
 
@@ -34,10 +36,10 @@ class N8NClient
         }
     }
 
-    public function post($endpoint, $data = [])
+    public function post(string $endpoint, $data = []): array
     {
         try {
-            $response = $this->client->request('POST', '/api/v1/ ' . $endpoint, [
+            $response = $this->client->request('POST', self::URI_PREFIX.$endpoint, [
                 'json' => $data,
             ]);
 
@@ -47,69 +49,69 @@ class N8NClient
         }
     }
 
-    public function getWorkflows($params = [])
+    public function getWorkflows(array $params = []): array
     {
         return $this->get('workflows', $params);
     }
 
-    public function getWorkflow($id)
+    public function getWorkflow(string $id)
     {
         return $this->get("workflows/{$id}");
     }
 
-    public function createWorkflow($data)
+    public function createWorkflow(array $data): array
     {
         return $this->post('workflows', $data);
     }
 
-    public function updateWorkflow($id, $data)
+    public function updateWorkflow(string $id, array $data): array
     {
         return $this->request('PUT', "workflows/{$id}", [
             'json' => $data,
         ]);
     }
 
-    public function deleteWorkflow($id)
+    public function deleteWorkflow(string $id): array
     {
         return $this->request('DELETE', "workflows/{$id}");
     }
 
-    public function activateWorkflow($id)
+    public function activateWorkflow(string $id): array
     {
         return $this->post("workflows/{$id}/activate");
     }
 
-    public function deactivateWorkflow($id)
+    public function deactivateWorkflow(string $id): array
     {
         return $this->post("workflows/{$id}/deactivate");
     }
 
-    public function getExecutions($params = [])
+    public function getExecutions(array $params = []): array
     {
         return $this->get('executions', $params);
     }
 
-    public function getExecution($id, $includeData = false)
+    public function getExecution(string $id, bool $includeData = false): array
     {
         return $this->get("executions/{$id}", [
             'includeData' => $includeData,
         ]);
     }
 
-    public function getTags($params = [])
+    public function getTags(array $params = []): array
     {
         return $this->get('tags', $params);
     }
 
-    public function createTag($data)
+    public function createTag(array $data): array
     {
         return $this->post('tags', $data);
     }
 
-    private function request($method, $endpoint, $options = [])
+    protected function request(string $method, string $endpoint, array $options = []): array
     {
         try {
-            $response = $this->client->request($method, $endpoint, $options);
+            $response = $this->client->request($method, self::URI_PREFIX.$endpoint, $options);
 
             return json_decode($response->getBody(), true);
         } catch (RequestException $e) {
@@ -117,7 +119,7 @@ class N8NClient
         }
     }
 
-    protected function handleException(RequestException $e)
+    protected function handleException(RequestException $e): array
     {
         if ($e->hasResponse()) {
             return json_decode($e->getResponse()->getBody(), true);

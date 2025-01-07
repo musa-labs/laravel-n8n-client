@@ -32,9 +32,10 @@
         "sort-packages": true
     },
     "scripts": {
-        "test": "phpunit",
         "format": "pint",
-        "tinker": "testbench tinker"
+        "test": "phpunit",
+        "test:tinker": "testbench tinker",
+        "test:publish": "testbench vendor:publish --provider='JPCaparas\\N8N\\N8NServiceProvider'"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

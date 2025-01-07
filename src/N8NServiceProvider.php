@@ -14,7 +14,7 @@ class N8NServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(N8NClient::class, function ($app) {
-            return new N8NClient();
+            return new N8NClient;
         });
     }
 
