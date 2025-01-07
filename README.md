@@ -75,3 +75,7 @@ $response = $n8n->updateWorkflow('workflow-id', ['name' => 'Updated Workflow']);
 ```bash
 composer test
 ```
+
+## License
+
+MIT
