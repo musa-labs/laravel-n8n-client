@@ -11,7 +11,7 @@ A Laravel library that interfaces with the [self-hosted N8N.io](https://docs.n8n
 You can install the package via Composer:
 
 ```bash
-composer require jpcaparas/n8n-client
+composer require jpcaparas/laravel-n8n-client
 ```
 
 Publish the configuration file:
