@@ -4,6 +4,8 @@
 
 A Laravel library that interfaces with the [self-hosted N8N.io](https://docs.n8n.io/hosting/community-edition-features/) [REST API](https://docs.n8n.io/api/api-reference/).
 
+<img width="1286" alt="image" src="https://github.com/user-attachments/assets/d21e7b2c-f30b-4404-859a-4c926fb3a97b" />
+
 ## Installation
 
 You can install the package via Composer:
