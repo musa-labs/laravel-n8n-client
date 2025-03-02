@@ -1,5 +1,5 @@
 {
-    "name": "jpcaparas/laravel-n8n-client",
+    "name": "musa-labs/laravel-n8n-client",
     "description": "A Laravel library that interfaces with the self-hosted n8n.io REST API",
     "type": "library",
     "license": "MIT",
